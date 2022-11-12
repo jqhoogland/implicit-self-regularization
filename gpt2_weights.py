@@ -18,16 +18,26 @@ for name, param in model.named_parameters():
 
 print(len(attention_weight_matrix))
 print(len(mlp_weight_matrix))
+mlp_weight_matrix_part1 = mlp_weight_matrix[0:6]
+mlp_weight_matrix_part2 = mlp_weight_matrix[6:12]
+print(len(mlp_weight_matrix_part1))
+print(len(mlp_weight_matrix_part2))
 
 with open("attention_weights", 'wb') as f:
     pickle.dump(attention_weight_matrix, f)
 
-with open("mlp_weights", 'wb') as f:
-    pickle.dump(mlp_weight_matrix, f)
+with open("mlp_weights_part1", 'wb') as f:
+    pickle.dump(mlp_weight_matrix_part1, f)
+
+with open("mlp_weights_part2", 'wb') as f:
+    pickle.dump(mlp_weight_matrix_part2, f)
 
 #this is how you load it again
 with open("attention_weights", 'rb') as f:
     attention_weight_matrix = pickle.load( f)
 
-with open("attention_weights", 'rb') as f:
-    attention_weight_matrix = pickle.load( f)
+with open("mlp_weights_part1", 'rb') as f:
+    mlp_weight_matrix_part1 = pickle.load( f)
+
+with open("mlp_weights_part2", 'rb') as f:
+    mlp_weight_matrix_part2 = pickle.load( f)
